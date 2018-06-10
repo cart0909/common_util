@@ -45,3 +45,8 @@ sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libp
 # git
 sudo apt-get install gitk
 
+# terminator
+sudo apt-get install terminator
+
+# qt
+sudo apt-get install qt5-default
