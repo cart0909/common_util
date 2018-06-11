@@ -53,3 +53,6 @@ sudo apt-get install qt5-default
 
 # clang-format
 sudo apt-get install clang-format-5.0
+
+# Glew
+sudo apt-get install libglew-dev
