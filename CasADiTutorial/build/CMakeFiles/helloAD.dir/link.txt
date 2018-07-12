@@ -1,0 +1,1 @@
+/usr/bin/c++    -Wall  -O3 -march=native -pthread -std=c++11 -O3 -DNDEBUG   CMakeFiles/helloAD.dir/example/helloAD.cpp.o  -o helloAD -rdynamic /usr/local/lib/libcasadi.so.3.5 -ldl -Wl,-rpath,/usr/local/lib 
