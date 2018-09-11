@@ -56,3 +56,9 @@ sudo apt-get install clang-format-5.0
 
 # Glew
 sudo apt-get install libglew-dev
+
+# libyaml-cpp
+sudo apt-get install libyaml-cpp-dev
+
+# checkinstall
+sudo apt-get install checkinstall
