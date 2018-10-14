@@ -107,6 +107,19 @@ RUN cmake .. -DCMAKE_BUILD_TYPE=Release -DOPENCV_EXTRA_MODULES_PATH=/home/3rdPar
 WORKDIR /home/3rdParty
 RUN rm -rf opencv-3.4.3/ && rm -rf opencv_contrib-3.4.3/
 
+# change ros cv_bridge opencv dependency
+# Use "bash" as replacement for	"sh"
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+COPY vision_opencv-melodic.zip /home/3rdParty/
+RUN unzip vision_opencv-melodic.zip && mkdir -p vision_opencv-melodic/cv_bridge/build
+WORKDIR vision_opencv-melodic/cv_bridge/build
+RUN source /opt/ros/$ROS_DISTRO/setup.bash\
+&& cmake .. -DCMAKE_INSTALL_PREFIX=/opt/ros/melodic/\
+&& make -j12\
+&& make install
+WORKDIR /home/3rdParty
+RUN rm -rf vision_opencv-melodic/
+
 WORKDIR /
 
 # setup entrypoint
