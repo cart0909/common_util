@@ -120,6 +120,16 @@ RUN source /opt/ros/$ROS_DISTRO/setup.bash\
 WORKDIR /home/3rdParty
 RUN rm -rf vision_opencv-melodic/
 
+# install mynt driver
+RUN apt-get update && apt-get install -y sudo && rm -rf /var/lib/apt/lists/* # add sudo
+RUN git clone https://github.com/slightech/MYNT-EYE-SDK-2
+WORKDIR MYNT-EYE-SDK-2
+RUN make init && make build && make install && make samples
+RUN mkdir -p wrappers/ros/src/mynt_eye_ros_wrapper/build
+WORKDIR wrappers/ros/src/mynt_eye_ros_wrapper/build
+RUN source /opt/ros/melodic/setup.bash && cmake .. -DCMAKE_INSTALL_PREFIX="/opt/ros/melodic/"\
+&& make -j8 && make install && mv /opt/ros/melodic/include/mynt_eye_ros_wrapper/launch /opt/ros/melodic/share/mynt_eye_ros_wrapper
+
 WORKDIR /
 
 # setup entrypoint
